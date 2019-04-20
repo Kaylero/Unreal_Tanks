@@ -15,7 +15,8 @@ class UNREAL_TANKS_API ATankPlayerController : public APlayerController
 
 public:
 	void BeginPlay() override;
+	void Tick(float DeltaTime) override;
 
 	ATank* GetControlledTank() const;
-	
+	void AimTowardsCrosshair();
 };
