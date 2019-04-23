@@ -1,5 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
 #include "TankAimingComponet.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
@@ -33,7 +34,7 @@ void UTankAimingComponet::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	
 }
 
-void UTankAimingComponet::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponet::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -50,11 +51,23 @@ void UTankAimingComponet::AimtAt(FVector HitLocation, float LaunchSpeed)
 		ESuggestProjVelocityTraceOption::DoNotTrace))
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-
 		auto BarrelLocation = Barrel->GetComponentLocation();
-		UE_LOG(LogTemp, Warning, TEXT("Aiming at: %s"), *AimDirection.ToString());
+
+		MoveBarrelTowards(AimDirection);
 	}
 
+}
+
+void UTankAimingComponet::MoveBarrelTowards(FVector AimDirection)
+{
+	auto BarrelRotation = Barrel->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	//auto DeltaRotator = AimAsRotator - BarrelRotation;
+
+	UE_LOG(LogTemp, Warning, TEXT("Aiming at: %s"), *AimAsRotator.ToString());
+
+
+	Barrel->Elevate(5.0f);
 }
 
 
