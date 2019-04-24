@@ -3,6 +3,7 @@
 #pragma once
 
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponet.generated.h"
@@ -25,10 +26,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	void SetTurretReference(UTankTurret* BarrelToSet);
 
 	void AimtAt(FVector WorldSpaceAim, float LaunchSpeed);
 
 private:
 	UTankBarrel* Barrel = nullptr;
+	UTankTurret* Turret = nullptr;
 	void MoveBarrelTowards(FVector AimDirection);
+	void MoveTurretTowards(FVector AimDirection);
 };
