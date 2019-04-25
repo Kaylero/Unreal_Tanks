@@ -39,6 +39,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float LaunchSpeed = 4000;
 
+	float FireRateInSeconds = 3;
+	double LastFireTime = 0;
+
 private:
 	UTankBarrel* Barrel = nullptr;
 };

@@ -18,9 +18,7 @@ class UNREAL_TANKS_API ATankAIController : public AAIController
 	
 public:
 	void BeginPlay() override;
-
-private:
+	void Tick(float Deltatime) override;
 	ATank* GetControlledTank() const;
 	ATank* GetPlayerTank() const;
-
 };

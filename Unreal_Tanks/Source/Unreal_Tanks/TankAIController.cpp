@@ -28,6 +28,18 @@ void ATankAIController::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("PlayerController has tank: %s"), *(GetPlayerTank()->GetName()));	
 }
 
+void ATankAIController::Tick(float Deltatime)
+{
+	auto PlayerTank = GetPlayerTank();
+	auto ControlledTank = GetControlledTank();
+
+	if (PlayerTank)
+	{
+		ControlledTank->AimtAt(GetPlayerTank()->GetActorLocation());
+		ControlledTank->Fire();
+	}
+}
+
 ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
