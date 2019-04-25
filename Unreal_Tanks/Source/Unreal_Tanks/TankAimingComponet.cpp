@@ -27,11 +27,13 @@ void UTankAimingComponet::BeginPlay()
 
 void UTankAimingComponet::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
+	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
 }
 
 void UTankAimingComponet::SetTurretReference(UTankTurret * TurretToSet)
 {
+	if (!TurretToSet) { return; }
 	Turret = TurretToSet;
 }
 
@@ -51,7 +53,6 @@ void UTankAimingComponet::AimtAt(FVector HitLocation, float LaunchSpeed)
 		auto BarrelLocation = Barrel->GetComponentLocation();
 
 		MoveBarrelTowards(AimDirection);
-		MoveTurretTowards(AimDirection);
 	}
 
 }

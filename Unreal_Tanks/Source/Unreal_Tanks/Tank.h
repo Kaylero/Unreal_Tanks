@@ -3,6 +3,7 @@
 #pragma once
 
 #include "TankAimingComponet.h"
+#include "Projectile.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
@@ -31,6 +32,13 @@ public:
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret* TurretToSet);
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+	UFUNCTION(BlueprintCallable)
+	void Fire();
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000;
+	float LaunchSpeed = 4000;
+
+private:
+	UTankBarrel* Barrel = nullptr;
 };
