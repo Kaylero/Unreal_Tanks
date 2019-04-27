@@ -43,7 +43,6 @@ void ATank::SetTurretReference(UTankTurret * TurretToSet)
 void ATank::Fire()
 {
 	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > FireRateInSeconds;
-	UE_LOG(LogTemp, Warning, TEXT("I'm UNDER FIRE!"));
 
 	if (Barrel && isReloaded) 
 	{
