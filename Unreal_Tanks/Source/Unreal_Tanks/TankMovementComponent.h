@@ -14,4 +14,9 @@ class UNREAL_TANKS_API UTankMovementComponent : public UNavMovementComponent
 {
 	GENERATED_BODY()
 	
+
+public:
+
+	UFUNCTION(BlueprintCallable)
+	void IntendMoveForward();
 };

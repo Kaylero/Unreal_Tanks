@@ -2,3 +2,7 @@
 
 #include "TankMovementComponent.h"
 
+void UTankMovementComponent::IntendMoveForward()
+{
+
+}

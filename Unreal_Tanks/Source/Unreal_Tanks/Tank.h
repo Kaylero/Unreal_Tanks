@@ -2,11 +2,15 @@
 
 #pragma once
 
-#include "TankAimingComponet.h"
-#include "Projectile.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
+
+class UTankMovementComponent;
+class UTankAimingComponet;
+class AProjectile;
+class UTankBarrel;
+class UTankTurret;
 
 UCLASS()
 class UNREAL_TANKS_API ATank : public APawn
@@ -20,6 +24,8 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	UTankAimingComponet* TankAimingComponent = nullptr;
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 public:
 
