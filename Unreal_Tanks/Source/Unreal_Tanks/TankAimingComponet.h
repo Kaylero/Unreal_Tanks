@@ -9,7 +9,7 @@
 class UTankBarrel;
 class UTankTurret;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class UNREAL_TANKS_API UTankAimingComponet : public UActorComponent
 {
 	GENERATED_BODY()
