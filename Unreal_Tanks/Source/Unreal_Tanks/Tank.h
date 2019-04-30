@@ -23,6 +23,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponet* TankAimingComponent = nullptr;
 	UPROPERTY(BlueprintReadOnly)
 	UTankMovementComponent* TankMovementComponent = nullptr;
