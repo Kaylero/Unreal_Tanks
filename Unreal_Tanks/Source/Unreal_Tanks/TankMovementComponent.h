@@ -7,9 +7,7 @@
 #include "TankMovementComponent.generated.h"
 
 class UTankTrack;
-/**
- * 
- */
+
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class UNREAL_TANKS_API UTankMovementComponent : public UNavMovementComponent
 {
@@ -26,10 +24,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void IntendTurnRight(float Throw);
 
-	void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
-
-
 private:
 	UTankTrack* LeftTrack = nullptr;
 	UTankTrack* RightTrack = nullptr;
+
+	void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 };
