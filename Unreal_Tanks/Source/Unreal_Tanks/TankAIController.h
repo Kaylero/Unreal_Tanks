@@ -21,4 +21,6 @@ public:
 	void Tick(float Deltatime) override;
 	ATank* GetControlledTank() const;
 	ATank* GetPlayerTank() const;
+	UPROPERTY(EditDefaultsOnly)
+	float AcceptanceRadius = 3000;
 };
