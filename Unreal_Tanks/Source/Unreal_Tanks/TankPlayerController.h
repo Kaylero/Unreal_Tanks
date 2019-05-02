@@ -8,6 +8,8 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
+class UTankAimingComponet;
+
 UCLASS()
 class UNREAL_TANKS_API ATankPlayerController : public APlayerController
 {
@@ -22,6 +24,9 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable)
 	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void FoundAimingComponent(UTankAimingComponet* AimingComponent);
 
 private:
 	bool GetSightRayHitLocation(FVector& HitLocation) const;

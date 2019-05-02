@@ -35,10 +35,8 @@ public:
 	
 	void AimtAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetTurretReference(UTankTurret* TurretToSet);
+	UFUNCTION(BlueprintCallable)
+	void SetBarrelReference(UTankBarrel * BarrelToSet);
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 	UFUNCTION(BlueprintCallable)

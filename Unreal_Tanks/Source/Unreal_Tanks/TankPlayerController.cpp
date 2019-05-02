@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "TankAimingComponet.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 
 
@@ -8,15 +9,11 @@ void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ATank* ControlledTank = GetControlledTank();
-
-	if (!ControlledTank)
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponet>();
+	if (AimingComponent)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Controlled tank == null"));
-		return;
-	}
-
-	UE_LOG(LogTemp, Warning, TEXT("Player Controller possesing: %s"), *(ControlledTank->GetName()));
+		FoundAimingComponent(AimingComponent);
+	}	
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
