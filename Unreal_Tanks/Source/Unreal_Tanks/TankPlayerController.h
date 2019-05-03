@@ -2,8 +2,6 @@
 
 #pragma once
 
-#include "Tank.h"
-
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
@@ -22,8 +20,6 @@ public:
 	void AimTowardsCrosshair();
 
 protected:
-	UFUNCTION(BlueprintCallable)
-	ATank* GetControlledTank() const;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void FoundAimingComponent(UTankAimingComponet* AimingComponent);
@@ -39,4 +35,5 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	float CrossHairYLocation = 0.333333;
 
+	UTankAimingComponet* TankAimingComponent = nullptr;
 };

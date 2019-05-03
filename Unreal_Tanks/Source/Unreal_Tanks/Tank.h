@@ -6,12 +6,6 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
-class UTankMovementComponent;
-class UTankAimingComponet;
-class AProjectile;
-class UTankBarrel;
-class UTankTurret;
-
 UCLASS()
 class UNREAL_TANKS_API ATank : public APawn
 {
@@ -23,30 +17,9 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponet* TankAimingComponent = nullptr;
-	UPROPERTY(BlueprintReadOnly)
-	UTankMovementComponent* TankMovementComponent = nullptr;
 
 public:
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
-	void AimtAt(FVector HitLocation);
-
-	UFUNCTION(BlueprintCallable)
-	void SetBarrelReference(UTankBarrel * BarrelToSet);
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
-	UFUNCTION(BlueprintCallable)
-	void Fire();
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float LaunchSpeed = 4000;
-	UPROPERTY(EditDefaultsOnly)
-	float FireRateInSeconds = 3;
-	double LastFireTime = 0;
-
-private:
-	UTankBarrel* Barrel = nullptr;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;	
 };

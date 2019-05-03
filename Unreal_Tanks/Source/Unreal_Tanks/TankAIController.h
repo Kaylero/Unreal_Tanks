@@ -2,11 +2,12 @@
 
 #pragma once
 
-#include "Tank.h"
-
 #include "CoreMinimal.h"
+#include "TankAimingComponet.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
+
+class UTankAimingComponet;
 
 /**
  * 
@@ -20,5 +21,8 @@ public:
 	void BeginPlay() override;
 	void Tick(float Deltatime) override;
 	UPROPERTY(EditDefaultsOnly)
-	float AcceptanceRadius = 3000;
+		float AcceptanceRadius = 3000;
+
+private:
+	UTankAimingComponet* AimingComnponent = nullptr;
 };
