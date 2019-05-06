@@ -26,6 +26,7 @@ class UNREAL_TANKS_API UTankAimingComponet : public UActorComponent
 public:	
 	UFUNCTION(BlueprintCallable)
 	void Initialise(UTankBarrel* TankBarrel, UTankTurret *TankTurret);
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
 	// Sets default values for this component's properties
 	UTankAimingComponet();
@@ -35,7 +36,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly)
-	EFiringStatus FiringState = EFiringStatus::Aiming;
+	EFiringStatus FiringState = EFiringStatus::Locked;
 	
 
 public:
@@ -52,7 +53,8 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	float FireRateInSeconds = 3;
 	double LastFireTime = 0;
+	FVector CurrentAimDirection;
 
 	void MoveBarrelTowards(FVector AimDirection);
-
+	bool IsBarrelMoving();
 };
