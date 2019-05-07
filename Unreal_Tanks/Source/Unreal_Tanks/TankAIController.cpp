@@ -15,10 +15,14 @@ void ATankAIController::BeginPlay()
 void ATankAIController::Tick(float Deltatime)
 {
 	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
-	//MoveToActor(PlayerTank, AcceptanceRadius);
+
+	if (!ensure(PlayerPawn)) { return; }
+
+	MoveToActor(PlayerPawn, AcceptanceRadius);
 
 	AimingComnponent->AimtAt(PlayerPawn->GetActorLocation());
-	AimingComnponent->Fire();
-
-	
+	if (AimingComnponent->GetFiringstate() == EFiringStatus::Locked)
+	{
+		AimingComnponent->Fire();
+	}
 }

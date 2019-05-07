@@ -20,8 +20,8 @@ class UNREAL_TANKS_API ATankAIController : public AAIController
 public:
 	void BeginPlay() override;
 	void Tick(float Deltatime) override;
-	UPROPERTY(EditDefaultsOnly)
-		float AcceptanceRadius = 3000;
+	UPROPERTY(EditAnywhere)
+	float AcceptanceRadius = 3000.0;
 
 private:
 	UTankAimingComponet* AimingComnponent = nullptr;

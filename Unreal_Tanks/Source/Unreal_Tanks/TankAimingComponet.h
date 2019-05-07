@@ -36,13 +36,14 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly)
-	EFiringStatus FiringState = EFiringStatus::Locked;
+	EFiringStatus FiringState = EFiringStatus::Reloading;
 	
 
 public:
 	void AimtAt(FVector WorldSpaceAim);
 	UFUNCTION(BlueprintCallable)
 	void Fire();
+	EFiringStatus GetFiringstate();
 
 private:
 	UTankBarrel* Barrel = nullptr;

@@ -97,6 +97,11 @@ void UTankAimingComponet::Fire()
 	}	
 }
 
+EFiringStatus UTankAimingComponet::GetFiringstate()
+{
+	return FiringState;
+}
+
 void UTankAimingComponet::MoveBarrelTowards(FVector AimDirection)
 {
 	if (!Barrel) { return; }
