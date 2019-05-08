@@ -57,10 +57,12 @@ private:
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 	FVector CurrentAimDirection;
 
+	UPROPERTY(EditDefaultsOnly)
 	float LaunchSpeed = 8000;
 	UPROPERTY(EditDefaultsOnly)
 	float FireRateInSeconds = 3;
-	double LastFireTime = 0;
-	int AmmoCounter = 4;
+	UPROPERTY(EditDefaultsOnly)
+	int32 AmmoCounter = 4;
 	
+	double LastFireTime = 0;
 };
