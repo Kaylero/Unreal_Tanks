@@ -5,6 +5,8 @@
 #include "Runtime/Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 #include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
 #include "Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "Runtime/Engine/Classes/GameFramework/DamageType.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -55,6 +57,9 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 
 	SetRootComponent(ImpactBlast);
 	CollisionMesh->DestroyComponent();
+
+	UGameplayStatics::ApplyRadialDamage(this, ProjectileDamage,	GetActorLocation(),
+		ExplosionForce->Radius, UDamageType::StaticClass(),	TArray<AActor*>());
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelay, false);

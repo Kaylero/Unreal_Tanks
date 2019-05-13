@@ -14,6 +14,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CurrentHealth = StartingHealth;
 }
 
 // Called to bind functionality to input
@@ -21,5 +22,13 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+float ATank::TakeDamage(float DamageAmount, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser)
+{
+	float DamageApplied = FMath::Clamp<float>(DamageAmount, 0, CurrentHealth);
+	CurrentHealth -= DamageApplied;
+	UE_LOG(LogTemp, Warning, TEXT("Damage Applied: %f Current Health:: %f"), DamageApplied, CurrentHealth);
+	return DamageAmount;
 }
 
