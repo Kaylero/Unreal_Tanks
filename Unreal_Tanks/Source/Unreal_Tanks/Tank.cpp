@@ -9,6 +9,11 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+float ATank::GetHealthPercent()
+{
+	return CurrentHealth / StartingHealth;
+}
+
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
