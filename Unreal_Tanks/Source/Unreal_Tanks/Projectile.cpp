@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Projectile.h"
+#include "Runtime/Engine/Public/TimerManager.h"
 #include "Runtime/Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 #include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
 #include "Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
@@ -28,7 +29,6 @@ AProjectile::AProjectile()
 
 	ExplosionForce = CreateDefaultSubobject<URadialForceComponent>(FName("Explosion Force"));
 	ExplosionForce->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-
 }
 
 // Called when the game starts or when spawned
@@ -52,5 +52,15 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
+
+	SetRootComponent(ImpactBlast);
+	CollisionMesh->DestroyComponent();
+
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimerExpire, DestroyDelay, false);
 }
 
+void AProjectile::OnTimerExpire()
+{
+	Destroy();
+}
