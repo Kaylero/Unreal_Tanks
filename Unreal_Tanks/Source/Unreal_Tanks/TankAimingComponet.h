@@ -47,14 +47,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int GetAmmoCount();
 
+	UPROPERTY(BlueprintReadWrite, Category = "Setup")
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
 private:
 	void MoveBarrelTowards(FVector AimDirection);
 	bool IsBarrelMoving();
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
 	FVector CurrentAimDirection;
 
 	UPROPERTY(EditDefaultsOnly)
