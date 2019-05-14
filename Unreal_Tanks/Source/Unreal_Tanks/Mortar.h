@@ -4,32 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Tank.generated.h"
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTankDelegate);
+#include "Mortar.generated.h"
 
 UCLASS()
-class UNREAL_TANKS_API ATank : public APawn
+class UNREAL_TANKS_API AMortar : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	ATank();
-	UFUNCTION(BlueprintPure)
-	float GetHealthPercent();
+	// Sets default values for this pawn's properties
+	AMortar();
 
 protected:
+	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
-	
-	FTankDelegate OnDeath;
 
 	UPROPERTY(EditDefaultsOnly)
 	float StartingHealth = 100.0f;
 	float CurrentHealth;
+
 };

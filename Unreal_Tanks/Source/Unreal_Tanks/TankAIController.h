@@ -9,9 +9,8 @@
 
 class UTankAimingComponet;
 
-/**
- * 
- */
+
+
 UCLASS()
 class UNREAL_TANKS_API ATankAIController : public AAIController
 {
@@ -24,5 +23,11 @@ public:
 	float AcceptanceRadius = 3000.0;
 
 private:
-	UTankAimingComponet* AimingComnponent = nullptr;
+	UTankAimingComponet* AimingComponent = nullptr;
+
+	virtual void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+	void OnTankDeath();
+
 };

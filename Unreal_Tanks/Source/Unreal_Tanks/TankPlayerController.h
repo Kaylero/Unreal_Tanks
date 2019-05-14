@@ -28,6 +28,9 @@ private:
 	bool GetSightRayHitLocation(FVector& HitLocation) const;
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector & HitLocation) const;
 	bool GetLookDirection(FVector2D ScreenLocation, FVector & LookDirection) const;
+	virtual void SetPawn(APawn* InPawn) override;
+	UFUNCTION()
+	void OnTankDeath();
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000000;
 	UPROPERTY(EditDefaultsOnly)
